@@ -6,7 +6,7 @@
 /*   By: amantara <amantara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 19:24:41 by amantara          #+#    #+#             */
-/*   Updated: 2022/11/22 18:59:25 by tmerida-         ###   ########.fr       */
+/*   Updated: 2022/11/25 12:11:26 by tmerida-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,13 +64,13 @@ int	save_color(t_global *global)
 	return (0);
 }
 
-int	check_nums(char *line_nums)
+int	check_nums(char *line_nums, char **arr, int i)
 {
-	int		i;
-	char	**arr;
-
-	i = 0;
+	if (check_commas(line_nums))
+		return (1);
 	arr = ft_split(line_nums, ',');
+	if (arr[3])
+		return (1);
 	while (arr[i])
 	{
 		if (ft_isdigit(arr[i][0]))
@@ -100,7 +100,7 @@ int	validate_colors(t_global *global, int i, char **arr)
 		arr = ft_split(global->colors[i], ' ');
 		if (!ft_strcmp(arr[0], "F") || !ft_strcmp(arr[0], "C"))
 		{
-			if (check_nums(arr[1]))
+			if (check_nums(arr[1], arr, 0))
 			{
 				free_matrix(&arr);
 				show_error_msg(2, "Error colores");

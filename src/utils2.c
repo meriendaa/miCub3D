@@ -6,7 +6,7 @@
 /*   By: tmerida- <tmerida-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 20:25:55 by tmerida-          #+#    #+#             */
-/*   Updated: 2022/11/22 19:04:07 by tmerida-         ###   ########.fr       */
+/*   Updated: 2022/11/25 12:10:33 by tmerida-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,22 @@ void	check_color(int i, t_global *global)
 		mlx_destroy_window(global->mlx, global->win);
 		exit(0);
 	}
+}
+
+int	check_commas(char *arr)
+{
+	int	i;
+	int	count;
+
+	i = 0;
+	count = 1;
+	while (arr[i])
+	{
+		if (arr[i] == ',')
+			count++;
+		if (count >= 4)
+			return (1);
+		i++;
+	}
+	return (0);
 }
